@@ -1,10 +1,11 @@
 import React from 'react'
+import Card from '../components/ui/Card'
 
 export const Dashboard = () => {
   return (
     <div className="grid grid-cols-3 grid-rows-5 gap-4">
-        <div className="col-span-3 bg-base-200">
-          1 - Cards
+        <div className="col-span-3  p-1">
+          <Card></Card>
         </div>
         
         <div className="col-span-2 row-span-2 row-start-2  bg-base-200 rounded-md p-3" >
