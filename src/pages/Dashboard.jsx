@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from '../components/ui/Card'
+import { BuySellCryptos } from '../components/buySellCryptoModal/BuySellCryptos'
 
 export const Dashboard = () => {
   return (
@@ -13,7 +14,7 @@ export const Dashboard = () => {
         </div>
         
         <div className="row-span-3 col-start-3 row-start-2 bg-base-200 rounded-md p-3" >
-          3 - compra y venta de activos
+          <BuySellCryptos></BuySellCryptos>
         </div>
 
         <div className="col-span-2 row-span-2 row-start-4 bg-base-200 rounded-md p-3" >
