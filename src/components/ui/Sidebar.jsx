@@ -13,7 +13,7 @@ export const Sidebar = () => {
        </div>
 
        <div className="">
-        <ul class="menu  rounded-box w-56">             
+        <ul className="menu  rounded-box w-56">             
             <li className='p-3.5'>
                     <Link to='/'> 
                       <svg 
