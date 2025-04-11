@@ -2,6 +2,7 @@ import React from 'react'
 import Card from '../components/ui/Card'
 import { BuySellCryptos } from '../components/buySellCryptoModal/BuySellCryptos'
 import LineGrafic  from '../components/charts/LineGrafic'
+import { TableHistoryCrypto } from '../components/tableHistoryCripto/TableHistoryCrypto'
 
 export const Dashboard = () => {
   return (
@@ -19,7 +20,7 @@ export const Dashboard = () => {
         </div>
 
         <div className="col-span-2 row-span-2 row-start-4 bg-base-200 rounded-md p-3" >
-          4 - tabla de activos recientes
+        <TableHistoryCrypto></TableHistoryCrypto>
         </div>
     </div>
         
