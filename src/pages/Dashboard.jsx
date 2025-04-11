@@ -1,6 +1,7 @@
 import React from 'react'
 import Card from '../components/ui/Card'
 import { BuySellCryptos } from '../components/buySellCryptoModal/BuySellCryptos'
+import LineGrafic  from '../components/charts/LineGrafic'
 
 export const Dashboard = () => {
   return (
@@ -10,7 +11,7 @@ export const Dashboard = () => {
         </div>
         
         <div className="col-span-2 row-span-2 row-start-2  bg-base-200 rounded-md p-3" >
-          2 - grafica 
+        <LineGrafic></LineGrafic>
         </div>
         
         <div className="row-span-3 col-start-3 row-start-2 bg-base-200 rounded-md p-3" >
