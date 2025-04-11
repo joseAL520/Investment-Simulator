@@ -7,7 +7,7 @@ import React from 'react'
 
 export const TableHistoryCrypto = () => {
   return (
-<div className="overflow-x-auto">
+<div className="overflow-x-auto flex flex-col items-center">
   <table className="table">
     <thead>
       <tr>
@@ -17,10 +17,10 @@ export const TableHistoryCrypto = () => {
         <th>Cantidad</th>
         <th>Precio Unitario</th>
         <th>ROI</th>
+        <th>Detalle</th>
       </tr>
     </thead>
     <tbody>
-
       <tr>
         <th>
             <div >
@@ -47,6 +47,9 @@ export const TableHistoryCrypto = () => {
         <td>2.5</td>
         <td>$ 2.5000</td>
         <td className='text-error'>-15</td>
+        <td className="text-sm opacity-50">
+         <button className='btn btn-ghost'>Detalle</button>
+        </td>
       </tr>
 
       <tr>
@@ -75,6 +78,9 @@ export const TableHistoryCrypto = () => {
         <td>2.5</td>
         <td>$ 2.5000</td>
         <td className='text-success'>+15</td>
+        <td className="text-sm opacity-50">
+         <button className='btn btn-ghost'>Detalle</button>
+        </td>
       </tr>
 
       <tr>
@@ -103,10 +109,18 @@ export const TableHistoryCrypto = () => {
         <td>2.5</td>
         <td>$ 2.5000</td>
         <td className='text-success'>+15</td>
+        <td className="text-sm opacity-50">
+         <button className='btn btn-ghost'>Detalle</button>
+        </td>
       </tr>
 
     </tbody>
   </table>
+  <div className="join">
+        <button className="join-item btn">«</button>
+        <button className="join-item btn btn-active">Page 22</button>
+        <button className="join-item btn">»</button>
+    </div>
 </div>
   )
 }
