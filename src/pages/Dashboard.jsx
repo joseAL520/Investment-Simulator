@@ -8,7 +8,7 @@ export const Dashboard = () => {
   return (
     <div className="grid grid-cols-3 grid-rows-5 gap-4">
         <div className="col-span-3  p-1">
-          <Card></Card>
+          <Card itemMenu={'Dashboard'}></Card>
         </div>
         
         <div className="col-span-2 row-span-2 row-start-2  bg-base-200 rounded-md p-3" >
