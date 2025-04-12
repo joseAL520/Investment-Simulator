@@ -1,7 +1,10 @@
 import React from 'react'
 
-export default function Card() {
+export default function Card({itemMenu}) {
   return (<> 
+
+    {itemMenu === 'Dashboard' ? 
+    
     <div className="flex flex-row justify-between gap-2">
 
         <div className="card w-60 bg-base-200 card-xs shadow-sm p-1.5">
@@ -34,7 +37,46 @@ export default function Card() {
         </div>
 
     </div>
-       
     
+    
+    : 
+    
+    <div className="flex flex-row justify-between gap-2">
+
+        <div className="card w-50 bg-base-200 card-xs shadow-sm p-1.5">
+            <div className="card-body">
+                <h2 className="card-title font-extrabold">Valor Invertido</h2>
+                <p className='text-warning  font-extrabold  text-2xl pt-2 '>$25.000</p>
+            </div>
+        </div>
+
+        <div className="card w-50 bg-base-200 card-xs shadow-sm p-1.5">
+            <div className="card-body">
+                <h2 className="card-title font-extrabold ">Ganancia Total</h2>
+                <p className='font-extrabold text-2xl pt-2 text-success'>$ 50.000</p>
+            </div>
+        </div>
+
+        <div className="card w-50 bg-base-200 card-xs shadow-sm p-1.5">
+            <div className="card-body">
+                <h2 className="card-title font-extrabold ">Perdidas</h2>
+                <p className='font-extrabold text-2xl pt-2  text-error'>6,000</p>
+            </div>
+        </div>
+
+        <div className="card w-50 bg-base-200 card-xs shadow-sm p-1.5">
+            <div className="card-body">
+                <h2 className="card-title font-extrabold ">Total de Activos</h2>
+                <p className='font-extrabold text-2xl pl-10  text-center '>5</p>  
+                
+            </div>
+        </div>
+
+</div> } 
+    
+
+    
+
+
     </>)
 }
