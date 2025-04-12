@@ -4,7 +4,7 @@ import { TableHistoryCrypto } from '../components/tableHistoryCripto/TableHistor
 export const Historial = () => {
   return (<>
     <section className='bg-base-200 m-5 p-2 rounded-md'> 
-      <TableHistoryCrypto></TableHistoryCrypto>
+      <TableHistoryCrypto itemMenu={'historial'}></TableHistoryCrypto>
     </section>
   </>
   )

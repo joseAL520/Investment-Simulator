@@ -5,7 +5,7 @@ import  {Modal}  from '../ui/Modal'
 // en el historial mosrar normal limite de 10 por paginacion
 // metodo LIFO
 
-export const TableHistoryCrypto = () => {
+export const TableHistoryCrypto = ({itemMenu}) => {
   return (<>
 
 <div className="overflow-x-auto flex flex-col items-center">
@@ -55,14 +55,15 @@ export const TableHistoryCrypto = () => {
         </td>
       </tr>
 
-
     </tbody>
   </table>
-  <div className="join">
-        <button className="join-item btn">«</button>
-        <button className="join-item btn btn-active">Page 22</button>
-        <button className="join-item btn">»</button>
-    </div>
+  {itemMenu === 'historial'?   
+    <div className="join" >
+          <button className="join-item btn">«</button>
+          <button className="join-item btn btn-active">Page 22</button>
+          <button className="join-item btn">»</button>
+    </div> :'' }
+
 </div>
   
   
