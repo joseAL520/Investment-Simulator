@@ -9,6 +9,7 @@ import AlphaEffectLine from '../services/AlphaEffectLine'
 export const Dashboard = () => {
 
   const [apiData, setApiData] = useState(null);
+  const [typeCript, SetypeCript] = useState('BTC');
   const [selecterTime, setSelecterTime] = useState('TIME_SERIES_DAILY');
 
   const handleChange = (e) =>{
@@ -33,16 +34,16 @@ export const Dashboard = () => {
               <select 
                 className="select select-warning w-30"
                 onChange={handleChange}>
-                  <option value='TIME_SERIES_DAILY'>Diario</option>
-                  <option value='TIME_SERIES_WEEKLY'>Semanal</option>
-                  <option value='TIME_SERIES_MONTHLY'>Mensual</option>
+                  <option value='DIGITAL_CURRENCY_DAILY'>Diario</option>
+                  <option value='DIGITAL_CURRENCY_WEEKLY'>Semanal</option>
+                  <option value='DIGITAL_CURRENCY_MONTHLY'>Mensual</option>
               </select>
           </div>
             <LineGrafic  apiData={apiData} ></LineGrafic>
         </div>
         
         <div className="row-span-3 col-start-3 row-start-2 bg-base-200 rounded-md p-3" >
-          <BuySellCryptos></BuySellCryptos>
+          <BuySellCryptos typeCrip={ SetypeCript }></BuySellCryptos>
         </div>
 
         <div className="col-span-2 row-span-2 row-start-4 bg-base-200 rounded-md p-3" >
@@ -50,7 +51,7 @@ export const Dashboard = () => {
         </div>
 
 
-        <AlphaEffectLine functionTime={selecterTime} onDataLoaded={handleDataLoaded} ></AlphaEffectLine>
+        <AlphaEffectLine functionTime={selecterTime} onDataLoaded={handleDataLoaded} typeCript={typeCript}></AlphaEffectLine>
     </div>
         
   )
