@@ -4,14 +4,15 @@ import { SelectActions } from "./components/selectAction"
 import { useState } from "react"
 
 
-export const BuySellCryptos = () => {
+export const BuySellCryptos = ({typeCrip}) => {
 
   const [action, setAction] = useState('')
   const [active, setActive] = useState('')
  
+  typeCrip(active)
   const Submit = () =>{
     if(action && active){
-      console.log({action},{active})
+      console.log(action,active)
     }
   }
 

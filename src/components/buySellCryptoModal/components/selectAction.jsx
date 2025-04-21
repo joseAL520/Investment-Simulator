@@ -4,7 +4,7 @@ export const SelectActions = ({typeAction}) => {
 
     const handleChange = (e) =>{
         const selectedValue = e.target.value;
-        typeAction({selectedValue})
+        typeAction(selectedValue)
     }
     
   return (

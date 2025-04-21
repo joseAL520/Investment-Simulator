@@ -1,9 +1,16 @@
 import React, { useRef, useState,useEffect } from 'react'
 
 const options = [
-    { label: 'Medium Apple', value: 'apple', img: '/apple.png' },
-    { label: 'Medium Orange', value: 'orange', img: '/orange.png' },
-    { label: 'Medium Tomato', value: 'tomato', img: '/tomato.png' },
+  { label: 'Bitcoin', value: 'BTC', img: '/btc.png' },
+  { label: 'Ethereum', value: 'ETH', img: '/eth.png' },
+  { label: 'Binance Coin', value: 'BNB', img: '/bnb.png' },
+  { label: 'XRP', value: 'XRP', img: '/xrp.png' },
+  { label: 'Cardano', value: 'ADA', img: '/ada.png' },
+  { label: 'Polygon', value: 'MATIC', img: '/matic.png' },
+  { label: 'Dogecoin', value: 'DOGE', img: '/doge.png' },
+  { label: 'Solana', value: 'SOL', img: '/sol.png' },
+  { label: 'Polkadot', value: 'DOT', img: '/dot.png' },
+  { label: 'Shiba Inu', value: 'SHIB', img: '/shib.png' }
 ];
 
 export const SellecCryptos = ({typActive}) => {
@@ -12,7 +19,7 @@ export const SellecCryptos = ({typActive}) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
 
-    typActive(selected.label)
+    typActive(selected.value)
 
     
     useEffect(() => {

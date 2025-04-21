@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 
-export const AlphaEffectLine = ({functionTime,onDataLoaded }) => {
+export const AlphaEffectLine = ({functionTime,onDataLoaded,typeCript }) => {
 
-
+  //SKJ7P2VQ012QC3TU
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`https://www.alphavantage.co/query?function=${functionTime}&symbol=IBM&apikey=demo`); // Cambia URL
+        const res = await fetch(`https://www.alphavantage.co/query?function=${functionTime}&symbol=${typeCript}&market=EUR&apikey=demo`); // Cambia URL
         const data = await res.json();
         onDataLoaded(data); // Pasamos los datos al componente padre
       } catch (error) {
@@ -16,7 +16,7 @@ export const AlphaEffectLine = ({functionTime,onDataLoaded }) => {
     };
 
     fetchData();
-  }, [onDataLoaded,functionTime]);
+  }, [onDataLoaded,functionTime,typeCript]);
 
  return null
   
