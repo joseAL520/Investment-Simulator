@@ -24,7 +24,7 @@ Chartjs.register(
   Filler
 );
 
- const LineChartWithGradient = () => {
+ const LineChartWithGradient = ({apiData}) => {
 
 
   const [option,Setoptions] = useState(options)
@@ -37,6 +37,7 @@ Chartjs.register(
   useEffect(() => {
     const chart = chartRef.current;
 
+    console.log({apiData})
     if (!chart) return;
 
     const ctx = chart.ctx;
@@ -60,12 +61,11 @@ Chartjs.register(
         }
       ]
     });
-  }, []);
+  }, [apiData]);
 
 
 
   return (<>
-    <h2 className='m-1'>Evolución del Mercado</h2>
     <Line width={680} height={200} ref={chartRef} data={chartData} options={option} />
   </>);
 };
