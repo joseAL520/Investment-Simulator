@@ -3,9 +3,11 @@ import Card from '../components/ui/Card'
 import { BuySellCryptos } from '../components/buySellCryptoModal/BuySellCryptos'
 import LineGrafic  from '../components/charts/LineGrafic'
 import { TableHistoryCrypto } from '../components/tableHistoryCripto/TableHistoryCrypto'
-import { useCallback, useState } from 'react'
-import AlphaEffectLine from '../services/AlphaEffectLine'
-import { AlphaEffectCurrency } from '../services/AlphaEffectCurrency'
+import {  useEffect, useState } from 'react'
+import { getCryptoData } from '../services/AlphaEffectLine'
+import { getCurrencyData } from '../services/AlphaEffectCurrency'
+
+
 
 export const Dashboard = () => {
 
@@ -19,14 +21,18 @@ export const Dashboard = () => {
     setSelecterTime(selectedValue)
   }
   
-  // previene el multiple llamado de peticiones
-  const handleDataLoaded = useCallback((data) => {
-    setApiData(data);
-  },[]);
+  useEffect(() => {
+    getCryptoData(selecterTime, typeCript)
+      .then(setApiData)
+      .catch((err) => console.error(err));
+  }, [selecterTime, typeCript]);
 
-  const handleDataLoadedCurrency = useCallback((data) => {
-    setApiDataCurrency(data)
-  },[]);
+  useEffect(() => {
+    getCurrencyData(typeCript)
+      .then(setApiDataCurrency)
+      .catch((err) => console.error(err));
+  }, [typeCript])
+
 
   return (
     <div className="grid grid-cols-3 grid-rows-5 gap-4">
@@ -56,8 +62,6 @@ export const Dashboard = () => {
         <TableHistoryCrypto></TableHistoryCrypto>
         </div>
 
-        <AlphaEffectLine functionTime={selecterTime} onDataLoaded={handleDataLoaded} typeCript={typeCript}></AlphaEffectLine>
-        <AlphaEffectCurrency handleDataLoadedCurrency={handleDataLoadedCurrency}  typeCript={typeCript} ></AlphaEffectCurrency>
     </div>
         
   )
