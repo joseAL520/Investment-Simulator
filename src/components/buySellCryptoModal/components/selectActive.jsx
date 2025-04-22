@@ -19,7 +19,9 @@ export const SellecCryptos = ({typActive}) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
 
-    typActive(selected.value)
+    useEffect (()=>{
+      typActive(selected.value)
+    })
 
     
     useEffect(() => {

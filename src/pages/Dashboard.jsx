@@ -13,8 +13,8 @@ export const Dashboard = () => {
 
   const [apiData, setApiData] = useState(null);
   const [apiDataCurrency,setApiDataCurrency] = useState(null)
-  const [typeCript, SetypeCript] = useState('BTC');
-  const [selecterTime, setSelecterTime] = useState('TIME_SERIES_DAILY');
+  const [typeCript, SetypeCript] = useState(null);
+  const [selecterTime, setSelecterTime] = useState('DIGITAL_CURRENCY_DAILY');
 
   const handleChange = (e) =>{
     const selectedValue = e.target.value;
@@ -22,12 +22,14 @@ export const Dashboard = () => {
   }
   
   useEffect(() => {
+    if( !typeCript) return
     getCryptoData(selecterTime, typeCript)
       .then(setApiData)
       .catch((err) => console.error(err));
   }, [selecterTime, typeCript]);
 
   useEffect(() => {
+    if( !typeCript) return
     getCurrencyData(typeCript)
       .then(setApiDataCurrency)
       .catch((err) => console.error(err));
