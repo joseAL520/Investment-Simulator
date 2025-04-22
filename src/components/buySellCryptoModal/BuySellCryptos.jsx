@@ -3,6 +3,7 @@ import { SellecCryptos } from "./components/selectActive"
 import { SelectActions } from "./components/selectAction"
 import { useEffect, useState } from "react"
 import { compression } from "./logic/commission_calculation";
+import { calculationRoi } from "./logic/calcularROI";
 
 
 export const BuySellCryptos = ({typeCrip,apiDataCurrency}) => {
@@ -61,7 +62,7 @@ export const BuySellCryptos = ({typeCrip,apiDataCurrency}) => {
         valorTotal: valorTotal.toFixed(2),
         valorTotalConComision: compression(action,valorTotal),
         fechaHora: fechaActual,
-        roi: '0.00',
+        roi:calculationRoi(action,valorTotal,formData,setFormData),
         transaccionId: `tx-${Date.now()}`
       };
 
