@@ -5,7 +5,8 @@ const API_URL = API_URL_PRV
 const SUPABASE_KEY = SUPABASE_KEY_PRV
 const headers = {
   apikey: SUPABASE_KEY,
-  Authorization: `Bearer ${SUPABASE_KEY}`
+  Authorization: `Bearer ${SUPABASE_KEY}`,
+  'Content-Type': 'application/json',
 }
 
 export const CriptoPorftGet = () => {

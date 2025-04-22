@@ -4,6 +4,7 @@ import { SelectActions } from "./components/selectAction"
 import { useEffect, useState } from "react"
 import { compression } from "./logic/commission_calculation";
 import { calculationRoi } from "./logic/calcularROI";
+import { CriptoPorftPost } from "../../services/CriptoPorft";
 
 
 export const BuySellCryptos = ({typeCrip,apiDataCurrency}) => {
@@ -13,7 +14,7 @@ export const BuySellCryptos = ({typeCrip,apiDataCurrency}) => {
   const [formData, setFormData] = useState({
     activo: '',
     tipoOperacion: '',
-    cantidad: '1',
+    cantidad: '',
     valorTotal: '',
     fechaHora: '',
     roi: '',
@@ -49,7 +50,7 @@ export const BuySellCryptos = ({typeCrip,apiDataCurrency}) => {
     }));
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     if (action && active) {
       const fechaActual = new Date().toISOString();
       const valorTotal = formData.cantidad * parseFloat(formDataCurrency?.exchangeRate || 1);
@@ -60,14 +61,12 @@ export const BuySellCryptos = ({typeCrip,apiDataCurrency}) => {
         activo: active,
         tipoOperacion: action,
         valorTotal: valorTotal.toFixed(2),
-        valorTotalConComision: compression(action,valorTotal),
+        valorTotalConComision:`${compression(action,valorTotal)}`,
         fechaHora: fechaActual,
-        roi:calculationRoi(action,valorTotal,formData,setFormData),
+        roi:`${calculationRoi(action,valorTotal,formData,setFormData)}`,
         transaccionId: `tx-${Date.now()}`
       };
-
-      console.log('Operación confirmada:', datosFinales);
-      // Aquí podrías llamar a una API o almacenarlo
+       CriptoPorftPost(datosFinales);
     } else {
       alert('Selecciona un activo y tipo de operación');
     }
