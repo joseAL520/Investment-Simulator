@@ -2,29 +2,36 @@
 import { SellecCryptos } from "./components/selectActive"
 import { SelectActions } from "./components/selectAction"
 import { useEffect, useState } from "react"
-import { compression } from "./logic/commission_calculation";
-import { calculationRoi } from "./logic/calcularROI";
-import { CriptoPorftPost } from "../../services/CriptoPorft";
+
+import { SelectCount } from "./components/selectCount";
+import { buyCryptos } from "./logic/buyCriptos";
 
 
-export const BuySellCryptos = ({typeCrip,apiDataCurrency}) => {
+export const BuySellCryptos = ({typeCrip,apiDataCurrency,dataCriptos}) => {
 
-  const [action, setAction] = useState('');
-  const [active, setActive] = useState('');
-  const [formData, setFormData] = useState({
+  const [typeAction, setTypeAction] = useState(''); //comprar o vender
+  const [typeCripto, setTypeCripto] = useState(''); // tipo de cripto
+  const [quantity,setQuantity] = useState(0);
+  const [formData] = useState({
+    transaccionId: '',
+    //comprar
     activo: '',
     tipoOperacion: '',
     cantidad: '',
-    valorTotal: '',
-    fechaHora: '',
+    valorActualCripto: '',
+    fechaHoraCompra: '',
+    valorTotalConComisionCompra:'',
+    //venta
     roi: '',
-    transaccionId: '',
-    valorTotalConComision:'',
-  });
+    fechaHoraVenta:'',
+    valorTotalConComisionVenta:'',
 
+  });
+  const dataCripto = dataCriptos
+  console.log(dataCripto)
+ 
   const apiCurrency = apiDataCurrency?.['Realtime Currency Exchange Rate'];
-  const formDataCurrency = apiCurrency
-    ? {
+  const formDataCurrency = apiCurrency? {
         fromCurrencyCode: apiCurrency['1. From_Currency Code'],
         fromCurrencyName: apiCurrency['2. From_Currency Name'],
         toCurrencyCode: apiCurrency['3. To_Currency Code'],
@@ -34,39 +41,25 @@ export const BuySellCryptos = ({typeCrip,apiDataCurrency}) => {
         timeZone: apiCurrency['7. Time Zone'],
         bidPrice: apiCurrency['8. Bid Price'],
         askPrice: apiCurrency['9. Ask Price']
-      }
-    : null;
+  }: null;
 
   useEffect(() => {
-    typeCrip(active);
-  }, [active]);
+    typeCrip(typeCripto);
+  }, [typeCripto]);
 
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value
-    }));
-  };
 
   const handleConfirm = async () => {
-    if (action && active) {
-      const fechaActual = new Date().toISOString();
-      const valorTotal = formData.cantidad * parseFloat(formDataCurrency?.exchangeRate || 1);
-
+    if (typeAction && typeCripto && quantity) {
+      
     
-      const datosFinales = {
-        ...formData,
-        activo: active,
-        tipoOperacion: action,
-        valorTotal: valorTotal.toFixed(2),
-        valorTotalConComision:`${compression(action,valorTotal)}`,
-        fechaHora: fechaActual,
-        roi:`${calculationRoi(action,valorTotal,formData,setFormData)}`,
-        transaccionId: `tx-${Date.now()}`
-      };
-       CriptoPorftPost(datosFinales);
+      if(typeAction === 'comprar'){
+        buyCryptos(formData,typeAction,typeCripto,quantity,formDataCurrency)
+      }
+
+      if(typeAction === 'vender'){
+        console.log('vender activos')
+      }
+    
     } else {
       alert('Selecciona un activo y tipo de operación');
     }
@@ -78,20 +71,9 @@ export const BuySellCryptos = ({typeCrip,apiDataCurrency}) => {
   <section className='m-5'>
     <div className='flex flex-col gap-4'>
 
-      <SellecCryptos typActive={setActive} />
-      <SelectActions typeAction={setAction} />
-
-      
-      <label className='label'>
-        Cantidad a operar
-      </label>
-      <input
-        type='number'
-        name='cantidad'
-        className='input input-bordered w-20'
-        value={formData.cantidad}
-        onChange={handleChange}
-      />
+      <SellecCryptos typActive={setTypeCripto} />
+      <SelectActions typeAction={setTypeAction} />
+      <SelectCount quantity={setQuantity} />
 
       <div className='grid grid-cols-2 gap-2'>
         <div>
@@ -107,7 +89,7 @@ export const BuySellCryptos = ({typeCrip,apiDataCurrency}) => {
           <label className='label'>Comisión Estimada:</label>
         </div>
         <div className='text-right'>
-          <label className='label font-semibold'> {action === 'comprar' ? '1.5%' : action === 'vender' ? '1.2%' : '0%'}</label>
+          <label className='label font-semibold'> {typeAction === 'comprar' ? '1.5%' : typeAction === 'vender' ? '1.2%' : '0%'}</label>
         </div>
 
       </div>
