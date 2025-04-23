@@ -1,45 +1,79 @@
 import React, { useState } from 'react'
+import { countCriptos } from '../../../logic/countCripots'
 
-export const SelectCount = ({countNumber,quantity}) => {
+export const SelectCount = ({quantity,typeAction,typeCripto,dataCriptos}) => {
     
-    countNumber = 0
-
-
-    const [count, setCount] = useState(countNumber)
-    const [error, setError] = useState(false)
+  const [count, setCount] = useState(0)
+  const countCripto =  countCriptos(dataCriptos,typeCripto)
+  const [countCripots, setcountCripots] = useState(0)
 
     
-    const handleChange = (e) => {
+  const handleChangeBuy = (e) => {
         const { value } = e.target 
         if( value <= 0){
             setCount(0)
-            setError(true)
           return  
         }
         setCount(value)
         quantity(value)
-        setError(false)
-    };
-
+  };
+  const handleChangeSale = (e) => {
+      const { value } = e.target 
+      if( value <= 0){
+        setcountCripots(0)
+        return  
+      }
+      setcountCripots(value)
+      quantity(value)
+  };
   
-    
+  const selectBuy = () =>{
 
-  return (
-    <>
+      return (<>
+        <label className='label'>
+          Cantidad:
+        </label>
+        <input
+          type='number'
+          name='cantidad'
+          className='input input-bordered w-20'
+          value={count}
+          onChange={handleChangeBuy}></input>
+      </>)
+      
+  }
+  const selectSale = () =>{
+    
+      return <>
+          
+        <label className='label'>
+          Cantidad:
+        </label>
+        <input
+          type='number'
+          name='cantidad'
+          className='input input-bordered w-20'
+          value={countCripots}
+          onChange={handleChangeSale}
+          max={countCripto}
+          >
+  
+        </input>
+      </>
+  }
 
-    <label className='label'>
-        Cantidad a operar
-    </label>
-      <input
-        type='number'
-        name='cantidad'
-        className='input input-bordered w-20'
-        value={count}
-        onChange={handleChange}
-      />
-    
-    <span className='text-error font-[1]'>{error ? 'No se acceptas campos menores que ceros':''}</span>
-    
-    </>
-  )
+return (<>
+
+  <div className="flex gap-2.5">
+    {typeAction === 'comprar'? selectBuy() : selectSale() }    
+    {typeAction ==='vender'?  
+      <div className="flex gap-2.5" >
+      <label className='label'>Disponibles: </label>
+      <label className='label'> {countCripto} </label>
+      </div>: ""
+    }
+  </div>
+  
+</>)
+
 }

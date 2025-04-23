@@ -5,6 +5,8 @@ import { useEffect, useState } from "react"
 
 import { SelectCount } from "./components/selectCount";
 import { buyCryptos } from "./logic/buyCriptos";
+import { saleCriptos } from "./logic/saleCriptos";
+import { InfoCripotos } from "./components/infoCripotos";
 
 
 export const BuySellCryptos = ({typeCrip,apiDataCurrency,dataCriptos}) => {
@@ -27,8 +29,6 @@ export const BuySellCryptos = ({typeCrip,apiDataCurrency,dataCriptos}) => {
     valorTotalConComisionVenta:'',
 
   });
-  const dataCripto = dataCriptos
-  console.log(dataCripto)
  
   const apiCurrency = apiDataCurrency?.['Realtime Currency Exchange Rate'];
   const formDataCurrency = apiCurrency? {
@@ -57,7 +57,7 @@ export const BuySellCryptos = ({typeCrip,apiDataCurrency,dataCriptos}) => {
       }
 
       if(typeAction === 'vender'){
-        console.log('vender activos')
+        saleCriptos(formData,typeAction,typeCripto,quantity,formDataCurrency)
       }
     
     } else {
@@ -73,27 +73,9 @@ export const BuySellCryptos = ({typeCrip,apiDataCurrency,dataCriptos}) => {
 
       <SellecCryptos typActive={setTypeCripto} />
       <SelectActions typeAction={setTypeAction} />
-      <SelectCount quantity={setQuantity} />
-
-      <div className='grid grid-cols-2 gap-2'>
-        <div>
-          <label className='label'>Precio Actual:</label>
-        </div>
-        <div className='text-right'>
-          <label className='label font-semibold'>
-            ${parseFloat(formDataCurrency?.exchangeRate || 0).toFixed(2)}
-          </label>
-        </div>
-
-        <div>
-          <label className='label'>Comisión Estimada:</label>
-        </div>
-        <div className='text-right'>
-          <label className='label font-semibold'> {typeAction === 'comprar' ? '1.5%' : typeAction === 'vender' ? '1.2%' : '0%'}</label>
-        </div>
-
-      </div>
-
+      <SelectCount quantity={setQuantity} typeAction={typeAction} dataCriptos={dataCriptos} typeCripto={typeCripto} />
+      <InfoCripotos formDataCurrency={formDataCurrency} typeAction={typeAction}></InfoCripotos>
+      
       <button className='btn btn-warning self-center' onClick={handleConfirm}>
         Confirmar Operación
       </button>
