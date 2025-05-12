@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { API_URL_PRV, SUPABASE_KEY_PRV } from '../environment/dev_env'
+import { API_URL_PRV, API_URL_PRV_INV, SUPABASE_KEY_PRV } from '../environment/dev_env'
 
 const API_URL = API_URL_PRV
+const API_URL2 = API_URL_PRV_INV
 const SUPABASE_KEY = SUPABASE_KEY_PRV
 const headers = {
   apikey: SUPABASE_KEY,
@@ -20,6 +21,41 @@ export const CriptoPorftGet = () => {
     const fetchCripto = async() => {
       try{
         const response = await fetch(`${API_URL}?select=*`,{
+          method: 'GET',
+          headers
+        });
+  
+        if (!response.ok) {
+          throw new Error('Error al obtener datos');
+        }
+  
+        const data = await response.json();
+        setCriptos(data);
+  
+      }catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    
+    }
+    fetchCripto()
+  },[])
+
+  return {criptos,loading,error}
+}
+
+export const CriptoPorfInvtGet = () => {
+  
+  const [criptos, setCriptos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect( () => {
+
+    const fetchCripto = async() => {
+      try{
+        const response = await fetch(`${API_URL2}?select=*`,{
           method: 'GET',
           headers
         });

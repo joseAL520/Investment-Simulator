@@ -4,9 +4,8 @@ import { SelectActions } from "./components/selectAction"
 import { useEffect, useState } from "react"
 
 import { SelectCount } from "./components/selectCount";
-import { buyCryptos } from "./logic/buyCriptos";
-import { saleCriptos } from "./logic/saleCriptos";
 import { InfoCripotos } from "./components/infoCripotos";
+import { ModalVerific } from "../ui/ModalVerific";
 
 
 export const BuySellCryptos = ({typeCrip,apiDataCurrency}) => {
@@ -48,23 +47,6 @@ export const BuySellCryptos = ({typeCrip,apiDataCurrency}) => {
   }, [typeCripto]);
 
 
-  const handleConfirm = async () => {
-    if (typeAction && typeCripto && quantity) {
-      
-    
-      if(typeAction === 'comprar'){
-        buyCryptos(formData,typeAction,typeCripto,quantity,formDataCurrency)
-      }
-
-      if(typeAction === 'vender'){
-        saleCriptos(formData,typeAction,typeCripto,quantity,formDataCurrency)
-      }
-    
-    } else {
-      alert('Selecciona un activo y tipo de operación');
-    }
-  };
-
  return (<>
   <h2 className='text-center text-2xl font-bold'>Comprar / Vender Activos</h2>
 
@@ -75,11 +57,7 @@ export const BuySellCryptos = ({typeCrip,apiDataCurrency}) => {
       <SelectActions typeAction={setTypeAction} />
       <SelectCount quantity={setQuantity} typeAction={typeAction} typeCripto={typeCripto} />
       <InfoCripotos formDataCurrency={formDataCurrency} typeAction={typeAction}></InfoCripotos>
-      
-      <button className='btn btn-warning self-center' onClick={handleConfirm}>
-        Confirmar Operación
-      </button>
-
+      <ModalVerific formData={formData} typeAction={typeAction} typeCripto={typeCripto} quantity={quantity} formDataCurrency={formDataCurrency}></ModalVerific>
     </div>
   </section>
 </>)

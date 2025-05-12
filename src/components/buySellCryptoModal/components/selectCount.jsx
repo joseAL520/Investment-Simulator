@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { CriptoPorftGet } from '../../../services/CriptoPorft'
+import { CriptoPorfInvtGet } from '../../../services/CriptoPorft'
 import { countCriptos } from '../../../logic/countCripots'
 
 export const SelectCount = ({quantity,typeAction,typeCripto,}) => {
   
-const {criptos} = CriptoPorftGet()
+const {criptos} = CriptoPorfInvtGet()
   const [count, setCount] = useState(0)
   const countCripto = countCriptos(criptos,typeCripto)
   const [countCripots, setcountCripots] = useState(0)
