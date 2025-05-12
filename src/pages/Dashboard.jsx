@@ -6,7 +6,7 @@ import { TableHistoryCrypto } from '../components/tableHistoryCripto/TableHistor
 import {  useEffect, useState } from 'react'
 import { getCryptoData } from '../services/AlphaEffectLine'
 import { getCurrencyData } from '../services/AlphaEffectCurrency'
-import { CriptoPorftGet } from '../services/CriptoPorft'
+
 
 
 
@@ -17,7 +17,6 @@ export const Dashboard = () => {
   const [typeCript, SetypeCript] = useState(null);
   const [selecterTime, setSelecterTime] = useState('DIGITAL_CURRENCY_DAILY');
   
-  const {criptos} = CriptoPorftGet()
 
   const handleChange = (e) =>{
     const selectedValue = e.target.value;
@@ -59,7 +58,7 @@ export const Dashboard = () => {
         </div>
         
         <div className="row-span-3 col-start-3 row-start-2 bg-base-200 rounded-md p-3" >
-          <BuySellCryptos typeCrip={ SetypeCript } apiDataCurrency={apiDataCurrency}  dataCriptos={criptos}></BuySellCryptos>
+          <BuySellCryptos typeCrip={ SetypeCript } apiDataCurrency={apiDataCurrency}></BuySellCryptos>
         </div>
 
         <div className="col-span-2 row-span-2 row-start-4 bg-base-200 rounded-md p-3" >

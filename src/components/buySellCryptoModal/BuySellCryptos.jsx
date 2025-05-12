@@ -9,7 +9,7 @@ import { saleCriptos } from "./logic/saleCriptos";
 import { InfoCripotos } from "./components/infoCripotos";
 
 
-export const BuySellCryptos = ({typeCrip,apiDataCurrency,dataCriptos}) => {
+export const BuySellCryptos = ({typeCrip,apiDataCurrency}) => {
 
   const [typeAction, setTypeAction] = useState(''); //comprar o vender
   const [typeCripto, setTypeCripto] = useState(''); // tipo de cripto
@@ -73,7 +73,7 @@ export const BuySellCryptos = ({typeCrip,apiDataCurrency,dataCriptos}) => {
 
       <SellecCryptos typActive={setTypeCripto} />
       <SelectActions typeAction={setTypeAction} />
-      <SelectCount quantity={setQuantity} typeAction={typeAction} dataCriptos={dataCriptos} typeCripto={typeCripto} />
+      <SelectCount quantity={setQuantity} typeAction={typeAction} typeCripto={typeCripto} />
       <InfoCripotos formDataCurrency={formDataCurrency} typeAction={typeAction}></InfoCripotos>
       
       <button className='btn btn-warning self-center' onClick={handleConfirm}>

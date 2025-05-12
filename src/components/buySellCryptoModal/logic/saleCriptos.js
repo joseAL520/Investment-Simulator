@@ -18,5 +18,6 @@ export const saleCriptos = (formData,action,active,quantity,formDataCurrency) =>
         roi: ''
     };
     CriptoPorftPost(datosFinales)
+    window.location.reload();
   
 }
