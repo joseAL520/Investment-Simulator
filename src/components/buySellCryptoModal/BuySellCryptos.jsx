@@ -15,6 +15,8 @@ export const BuySellCryptos = ({typeCrip,apiDataCurrency}) => {
   const [quantity,setQuantity] = useState(0);
   const [formData] = useState({
     transaccionId: '',
+    img:'',
+    nombreActivo:'',
     //comprar
     activo: '',
     tipoOperacion: '',

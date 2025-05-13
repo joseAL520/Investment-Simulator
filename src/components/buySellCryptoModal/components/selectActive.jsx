@@ -1,17 +1,7 @@
 import React, { useRef, useState,useEffect } from 'react'
+import { options } from '../logic/optiosCriptos';
 
-const options = [
-  { label: 'Bitcoin', value: 'BTC', img: '/btc.png' },
-  { label: 'Ethereum', value: 'ETH', img: '/eth.png' },
-  { label: 'Binance Coin', value: 'BNB', img: '/bnb.png' },
-  { label: 'XRP', value: 'XRP', img: '/xrp.png' },
-  { label: 'Cardano', value: 'ADA', img: '/ada.png' },
-  { label: 'Polygon', value: 'MATIC', img: '/matic.png' },
-  { label: 'Dogecoin', value: 'DOGE', img: '/doge.png' },
-  { label: 'Solana', value: 'SOL', img: '/sol.png' },
-  { label: 'Polkadot', value: 'DOT', img: '/dot.png' },
-  { label: 'Shiba Inu', value: 'SHIB', img: '/shib.png' }
-];
+
 
 export const SellecCryptos = ({typActive}) => {
     
