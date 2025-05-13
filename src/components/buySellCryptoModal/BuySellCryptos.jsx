@@ -1,51 +1,66 @@
 
 import { SellecCryptos } from "./components/selectActive"
 import { SelectActions } from "./components/selectAction"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+
+import { SelectCount } from "./components/selectCount";
+import { InfoCripotos } from "./components/infoCripotos";
+import { ModalVerific } from "../ui/ModalVerific";
 
 
-export const BuySellCryptos = () => {
+export const BuySellCryptos = ({typeCrip,apiDataCurrency}) => {
 
-  const [action, setAction] = useState('')
-  const [active, setActive] = useState('')
+  const [typeAction, setTypeAction] = useState(''); //comprar o vender
+  const [typeCripto, setTypeCripto] = useState(''); // tipo de cripto
+  const [quantity,setQuantity] = useState(0);
+  const [formData] = useState({
+    transaccionId: '',
+    img:'',
+    nombreActivo:'',
+    //comprar
+    activo: '',
+    tipoOperacion: '',
+    cantidad: '',
+    valorActualCripto: '',
+    fechaHoraCompra: '',
+    valorTotalConComisionCompra:'',
+    //venta
+    roi: '',
+    fechaHoraVenta:'',
+    valorTotalConComisionVenta:'',
+
+  });
  
-  const Submit = () =>{
-    if(action && active){
-      console.log({action},{active})
-    }
-  }
+  const apiCurrency = apiDataCurrency?.['Realtime Currency Exchange Rate'];
+  const formDataCurrency = apiCurrency? {
+        fromCurrencyCode: apiCurrency['1. From_Currency Code'],
+        fromCurrencyName: apiCurrency['2. From_Currency Name'],
+        toCurrencyCode: apiCurrency['3. To_Currency Code'],
+        toCurrencyName: apiCurrency['4. To_Currency Name'],
+        exchangeRate: apiCurrency['5. Exchange Rate'],
+        lastRefreshed: apiCurrency['6. Last Refreshed'],
+        timeZone: apiCurrency['7. Time Zone'],
+        bidPrice: apiCurrency['8. Bid Price'],
+        askPrice: apiCurrency['9. Ask Price']
+  }: null;
+
+  useEffect(() => {
+    typeCrip(typeCripto);
+  }, [typeCripto]);
 
 
  return (<>
-  <h2 className='text-center'>Comprar/vender Activos</h2>
+  <h2 className='text-center text-2xl font-bold'>Comprar / Vender Activos</h2>
+
   <section className='m-5'>
-    <div className="flex flex-col gap-3.5 ">
-    
-      <SellecCryptos typActive={setActive}></SellecCryptos>
-      <SelectActions typeAction={setAction} ></SelectActions>
+    <div className='flex flex-col gap-4'>
 
-      <div className="grid grid-cols-2 grid-rows-2 gap-2">
-              <div>
-                  <label className='label'>Precio Actual:</label>
-              </div>
-              
-              <div className="col-start-1 row-start-2">
-                  <label className='label'>Comision Estimada:</label>
-              </div>
-
-              <div className="col-start-2 row-start-1"> 
-                  <label className='label text-right'>$ 30.000</label> 
-              </div>
-              
-              <div>
-                  <label className='label text-right'>11</label>
-              </div>
-      </div>
-        
-      <button className='btn btn-warning' onClick={Submit}>  Confirmar Operacion</button>
-          
+      <SellecCryptos typActive={setTypeCripto} />
+      <SelectActions typeAction={setTypeAction} />
+      <SelectCount quantity={setQuantity} typeAction={typeAction} typeCripto={typeCripto} />
+      <InfoCripotos formDataCurrency={formDataCurrency} typeAction={typeAction}></InfoCripotos>
+      <ModalVerific formData={formData} typeAction={typeAction} typeCripto={typeCripto} quantity={quantity} formDataCurrency={formDataCurrency}></ModalVerific>
     </div>
   </section>
-   
-  </>)
+</>)
 }

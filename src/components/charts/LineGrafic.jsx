@@ -12,6 +12,7 @@ import {
   Legend,
   Filler
 } from 'chart.js';
+import { daily, monthly, Weekly } from './logic/chartData';
 
 Chartjs.register(
   CategoryScale,
@@ -24,8 +25,7 @@ Chartjs.register(
   Filler
 );
 
- const LineChartWithGradient = () => {
-
+ const LineChartWithGradient = ({apiData}) => {
 
   const [option,Setoptions] = useState(options)
   const chartRef = useRef(null);
@@ -34,22 +34,35 @@ Chartjs.register(
     datasets: []
   });
 
+
   useEffect(() => {
+    
+    if (!apiData || Object.keys(apiData).length === 0) return;
+    const data = [];
     const chart = chartRef.current;
-
     if (!chart) return;
-
     const ctx = chart.ctx;
     const gradient = ctx.createLinearGradient(0, 0, 0, 145);
     gradient.addColorStop(0, '#ffbf00');
     gradient.addColorStop(1, '#161212');
 
+    const timeSeriesHandlers = [
+      { key: 'Time Series (Digital Currency Daily)', handler: daily },
+      { key: 'Time Series (Digital Currency Weekly)', handler: Weekly },
+      { key: 'Time Series (Digital Currency Monthly)', handler: monthly },
+    ];
+    
+    timeSeriesHandlers.forEach(({ key, handler }) => {
+      if (apiData[key]) {
+        handler(apiData[key]).forEach(val => data.push(val));
+      }
+    });
+
     setChartData({
-      labels: ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"],
+      labels: data[0],
       datasets: [
         {
-          label: '',
-          data: [67000, 68000, 66500, 69000, 68500, 69500, 70000],
+          data: data[1],
           fill: true,
           backgroundColor: gradient,
           borderColor: '#ffbf00',
@@ -60,12 +73,11 @@ Chartjs.register(
         }
       ]
     });
-  }, []);
+  }, [apiData]);
 
 
 
   return (<>
-    <h2 className='m-1'>Evolución del Mercado</h2>
     <Line width={680} height={200} ref={chartRef} data={chartData} options={option} />
   </>);
 };

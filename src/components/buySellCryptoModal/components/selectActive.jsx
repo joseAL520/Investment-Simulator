@@ -1,10 +1,7 @@
 import React, { useRef, useState,useEffect } from 'react'
+import { options } from '../logic/optiosCriptos';
 
-const options = [
-    { label: 'Medium Apple', value: 'apple', img: '/apple.png' },
-    { label: 'Medium Orange', value: 'orange', img: '/orange.png' },
-    { label: 'Medium Tomato', value: 'tomato', img: '/tomato.png' },
-];
+
 
 export const SellecCryptos = ({typActive}) => {
     
@@ -12,7 +9,9 @@ export const SellecCryptos = ({typActive}) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
 
-    typActive(selected.label)
+    useEffect (()=>{
+      typActive(selected.value)
+    })
 
     
     useEffect(() => {
