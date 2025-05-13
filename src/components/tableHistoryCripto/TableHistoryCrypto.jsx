@@ -10,10 +10,10 @@ export const TableHistoryCrypto = ({ itemMenu }) => {
   const totalItems = criptos.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-  const paginatedCriptos = criptos
-    .slice()
-    .reverse()
-    .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  // Ordenar los datos por fecha (de más reciente a más antiguo)
+  const sortedCriptos = criptos.sort((a, b) => new Date(b.fecheCreacionCripto) - new Date(a.fecheCreacionCripto));
+  // Paginación: tomar los elementos correspondientes a la página actual
+  const paginatedCriptos = sortedCriptos.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   const handleNext = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
