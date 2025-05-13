@@ -13,9 +13,9 @@ return (<>
         <div ><label className="label">Activo</label></div>
         <div className="col-start-1 row-start-2">  <label className="label"> Tipo de Operación  </label>  </div>
         <div className="col-start-1 row-start-3">  <label className="label"> Cantidad  </label>  </div>
-        <div className="col-start-1 row-start-4">  <label className="label"> Valor Total  </label>  </div>
+        <div className="col-start-1 row-start-4">  <label className="label"> Valor Total por comision  </label>  </div>
         <div className="col-start-1 row-start-5">  <label className="label"> Fecha y Hora  </label>  </div>
-        <div className="col-start-1 row-start-6">  <label className="label"> Wallet Usada  </label>  </div>
+        <div className="col-start-1 row-start-6">  <label className="label"> Valor Actual de la cripto  </label>  </div>
         <div className="col-start-1 row-start-7">  <label className="label"> Confirmaciones  </label>  </div>
         <div className="col-start-1 row-start-8">  <label className="label"> ROI actual  </label>  </div>
         <div className="col-start-1 row-start-9">  <label className="label"> ID de transacción  </label>  </div>
@@ -23,19 +23,19 @@ return (<>
 
         <div className="col-start-2 row-start-1 font-bold"> 
           <div className="flex gap-0.5">
-            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968260.png" alt="ll" width={20} height={20} /> {data[0]}
+            <img src={data.img} alt="ll" width={20} height={20} /> {data.nombreActivo}
           </div>
         </div>
-        <div className="col-start-2 row-start-2 font-bold">{data[1]}</div>
-        <div className="col-start-2 row-start-3 font-bold">{data[2]}</div>
-        <div className="col-start-2 row-start-4 font-bold">$ {data[3]}</div>
-        <div className="col-start-2 row-start-5 font-bold">{data[4]}</div>
-        <div className="col-start-2 row-start-6 font-bold">{data[5]}</div>
-        <div className="col-start-2 row-start-7 font-bold">{data[6]}</div>
+        <div className="col-start-2 row-start-2 font-bold">{data.tipoOperacion}</div>
+        <div className="col-start-2 row-start-3 font-bold">{data.cantidad}</div>
+        <div className="col-start-2 row-start-4 font-bold">$ {parseFloat(data.valorTotalConComisionCompra ||  data.valorTotalConComisionVenta).toLocaleString()}</div>
+        <div className="col-start-2 row-start-5 font-bold">{new Date(data.fecheCreacionCripto).toLocaleDateString('es-ES')}</div>
+        <div className="col-start-2 row-start-6 font-bold">$ {parseFloat(data.valorActualCripto).toLocaleString()}</div>
+        <div className="col-start-2 row-start-7 font-bold">{data.nombreActivo}</div>
         <div className="col-start-2 row-start-8 font-bold">
-          { data[7] < 0 ? <label className="text-error">{data[7]}%</label> : <label className="text-success">+{data[7]}%</label>}
+          { data.roi < 0 ? <label className="text-error">{data.roi}%</label> : <label className="text-success">+{data.roi}%</label>}
         </div>
-        <div className="col-start-2 row-start-9 font-bold">{data[8]}</div>
+        <div className="col-start-2 row-start-9 font-bold">{data.transaccionId}</div>
       </div>
       
       <div className="flex justify-end">
