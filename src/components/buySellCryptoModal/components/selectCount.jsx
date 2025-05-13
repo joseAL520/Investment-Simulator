@@ -4,9 +4,9 @@ import { countCriptos } from '../../../logic/countCripots'
 
 export const SelectCount = ({quantity,typeAction,typeCripto,}) => {
   
-const {criptos} = CriptoPorfInvtGet()
+const {cripto} = CriptoPorfInvtGet()
   const [count, setCount] = useState(0)
-  const countCripto = countCriptos(criptos,typeCripto)
+  const countCripto = countCriptos(cripto,typeCripto)
   const [countCripots, setcountCripots] = useState(0)
   const handleChangeBuy = (e) => {
         const { value } = e.target 

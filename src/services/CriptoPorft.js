@@ -47,7 +47,7 @@ export const CriptoPorftGet = () => {
 
 export const CriptoPorfInvtGet = () => {
   
-  const [criptos, setCriptos] = useState([]);
+  const [cripto, setCriptos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -77,7 +77,7 @@ export const CriptoPorfInvtGet = () => {
     fetchCripto()
   },[])
 
-  return {criptos,loading,error}
+  return {cripto,loading,error}
 }
 
 export const CriptoPorftPost =  async (nuevaCripto) => {

@@ -24,6 +24,6 @@ export const saleCriptos = (formData,action,active,quantity,formDataCurrency) =>
         nombreActivo:criptoSearch.label,
     };
     CriptoPorftPost(datosFinales)
-    
+    window.location.reload();
   
 }
