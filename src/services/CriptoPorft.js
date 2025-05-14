@@ -45,38 +45,6 @@ export const CriptoPorftGet = () => {
   return {criptos,loading,error}
 }
 
-export const CriptoPorftGetId = (id) => {
-  const [cripto, setCripto] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchCripto = async () => {
-      try {
-        const response = await fetch(`${API_URL}?id=eq.${id}&select=*`, {
-          method: 'GET',
-          headers,
-        });
-
-        if (!response.ok) {
-          throw new Error('Error al obtener los datos');
-        }
-
-        const data = await response.json();
-        setCripto(data[0]); // Supabase devuelve un array
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (id) fetchCripto();
-  }, [id]);
-
-  return { cripto, loading, error };
-};
-
 export const CriptoPorfInvtGet = () => {
   
   const [cripto, setCriptos] = useState([]);

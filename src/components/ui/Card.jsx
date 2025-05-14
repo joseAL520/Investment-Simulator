@@ -1,3 +1,4 @@
+import { gananciaGeneral, invertidoGeneral, perdidaGeneral } from "../../logic/calculationModalGeneral"
 import { calcularRoiGlobal } from "../../logic/calculationRoiGeneral"
 import { CriptoPorfInvtGet, CriptoPorftGet } from "../../services/CriptoPorft"
 
@@ -6,6 +7,9 @@ export default function Card({itemMenu}) {
     const {cripto} = CriptoPorfInvtGet()
     const {criptos} = CriptoPorftGet()
     const calcularRoiGlo = calcularRoiGlobal(criptos)
+    const calculoinvGeneral = invertidoGeneral(cripto);
+    const calculoGanancia = gananciaGeneral(cripto);
+    const calculoPerdida = perdidaGeneral(cripto);
     const countActivosGenerla = () => {
         let countActivos = 0
         cripto.map(value => {
@@ -23,7 +27,7 @@ export default function Card({itemMenu}) {
         <div className="card w-60 bg-base-200 card-xs shadow-sm p-1.5">
             <div className="card-body">
                 <h2 className="card-title font-extrabold">Valor Invertido</h2>
-                <p className='text-warning  font-extrabold  text-2xl pt-2 '>$25.000</p>
+                <p className='text-warning  font-extrabold  text-2xl pt-2 '>${calculoinvGeneral}</p>
             </div>
         </div>
 
@@ -51,21 +55,21 @@ export default function Card({itemMenu}) {
         <div className="card w-50 bg-base-200 card-xs shadow-sm p-1.5">
             <div className="card-body">
                 <h2 className="card-title font-extrabold">Valor Invertido</h2>
-                <p className='text-warning  font-extrabold  text-2xl pt-2 '>$25.000</p>
+                <p className='text-warning  font-extrabold  text-2xl pt-2 '>${calculoinvGeneral}</p>
             </div>
         </div>
 
         <div className="card w-50 bg-base-200 card-xs shadow-sm p-1.5">
             <div className="card-body">
                 <h2 className="card-title font-extrabold ">Ganancia Total</h2>
-                <p className='font-extrabold text-2xl pt-2 text-success'>$ 50.000</p>
+                <p className='font-extrabold text-2xl pt-2 text-success'>${calculoGanancia}</p>
             </div>
         </div>
 
         <div className="card w-50 bg-base-200 card-xs shadow-sm p-1.5">
             <div className="card-body">
                 <h2 className="card-title font-extrabold ">Perdidas</h2>
-                <p className='font-extrabold text-2xl pt-2  text-error'>6,000</p>
+                <p className='font-extrabold text-2xl pt-2  text-error'>${calculoPerdida}</p>
             </div>
         </div>
 
@@ -78,10 +82,5 @@ export default function Card({itemMenu}) {
         </div>
 
 </div> } 
-    
-
-    
-
-
     </>)
 }
