@@ -1,7 +1,14 @@
-import React from 'react'
+import { CriptoPorfInvtGet } from "../../services/CriptoPorft"
+import { searchActive } from "../buySellCryptoModal/logic/optiosCriptos"
 
 export const TableHistoryPortfoli = () => {
-    const data = 10
+  const {cripto} = CriptoPorfInvtGet()
+
+   const searchImge = (code) =>{
+          const {img} =searchActive(code)
+         return img
+    }
+
   return (<>
 
 <div className="overflow-x-auto">
@@ -13,40 +20,40 @@ export const TableHistoryPortfoli = () => {
         <th></th>
         <th>Activo</th>
         <th>Cantidad</th>
-        <th>Valor Actual</th>
-        <th>Total USD</th>
+        <th>Valor Invertido</th>
+        <th>Ganancia</th>
+        <th>Perdida</th>
       </tr>
     </thead>
 
     <tbody>
-      {/* row 1 */}
-      <tr>
-        <th>1</th>
+      {cripto.map( (value,index) => (
+
+          <tr>
+        <th>{index + 1}</th>
         <td>
             <div className="flex items-center gap-3">
                 <div className="avatar">
                 <div className="mask mask-squircle h-12 w-12">
                     <img
-                    src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                    src={searchImge(value.activo)}
                     alt="Avatar Tailwind CSS Component" />
                 </div>
                 </div>
                 <div>
-                <div className="font-bold">BitCoin</div>
-                <div className="text-sm opacity-50">BTC</div>
+                <div className="font-bold">{value.activo}</div>
+                <div className="text-sm opacity-50"></div>
                 </div>
             </div>
         </td>
-        <td>2.5</td>
-        <td>$ 23.000</td>
-        <td>
-        { data < 0 ? <label className="text-error">{data}%</label> : <label className="text-success">+{data}%</label>}
-        </td>
+        <td>{value.cantidad_disponible}</td>
+        <td className="text-warning">${parseFloat(value.valor_invertido)}</td>
+        <td className="text-success">${parseFloat(value.ganancia_total)}</td>
+        <td className="text-error">${parseFloat(value.perdida)}</td>
       </tr>
-     
+    ))}
     </tbody>
   </table>
 </div>
-
-    </>)
+</>)
 }
