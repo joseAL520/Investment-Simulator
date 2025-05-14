@@ -24,5 +24,5 @@ export const buyCryptos = async (formData,typeAction,typeCripto,quantity,formDat
     };
 
     CriptoPorftPost(datosFinales);
-    //window.location.reload();
+    window.location.reload();
 }

@@ -6,6 +6,7 @@ export const TableHistoryCrypto = ({ itemMenu }) => {
   const { criptos, loading, error } = CriptoPorftGet();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = itemMenu === 'historial' ? 6 : 3;
+  const [selectedTransaction, setSelectedTransaction] = useState(null);
 
   const totalItems = criptos.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -21,6 +22,11 @@ export const TableHistoryCrypto = ({ itemMenu }) => {
 
   const handlePrev = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
+  const handleOpenModal = (transaction) => {
+    setSelectedTransaction(transaction); 
+    document.getElementById('my_modal_2').showModal(); 
   };
 
   return (
@@ -84,8 +90,8 @@ export const TableHistoryCrypto = ({ itemMenu }) => {
                 <td className={value.roi < 0 ? 'text-error' : 'text-success'}>
                   {value.roi !== undefined ? `${Math.floor(value.roi)}%` : ''}
                 </td>
-                <td className="text-sm opacity-50">
-                  <Modal data={value.transaccionid} />
+               <td className="text-sm opacity-50">
+                  <button onClick={() => handleOpenModal(value)} className="btn">Ver</button>
                 </td>
               </tr>
             ))}
@@ -102,8 +108,10 @@ export const TableHistoryCrypto = ({ itemMenu }) => {
           <button onClick={handleNext} className="join-item btn" disabled={currentPage === totalPages}>
             »
           </button>
+
         </div>
       )}
+      {selectedTransaction && <Modal data={selectedTransaction} />}
     </div>
   );
 };

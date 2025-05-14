@@ -4,8 +4,6 @@ export const Modal = ({data}) => {
   
 return (<>
 
-  <button className="btn" onClick={()=>document.getElementById('my_modal_2').showModal()}>Mas</button>
-  
   <dialog id="my_modal_2" className="modal">
     <div className="modal-box">
 
