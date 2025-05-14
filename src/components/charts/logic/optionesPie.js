@@ -1,22 +1,28 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { searchActive } from '../../buySellCryptoModal/logic/optiosCriptos';
 
 // Register required Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const label = [];
 const dataDoughnut = [];
+const colors = [];
 
 export const getDataInvCripto =(cripto)=>{
   if(label.length === 0 && dataDoughnut.length === 0){
-    console.log('entre')
    cripto.map( (value) => {
-    label.push(value.activo);
-    dataDoughnut.push(value.cantidad_disponible)
+      colors.push(searchColor(value.activo))
+      label.push(value.activo);
+      dataDoughnut.push(value.cantidad_disponible)
     return
   })
   }
 }
 
+const searchColor = (code) =>{
+  const {color} =searchActive(code)
+  return color
+}
 
 export const data = {
 
@@ -25,7 +31,7 @@ export const data = {
       {
         label: 'Cantidad',
         data: dataDoughnut,
-        backgroundColor: ['#ffbf00', 'red', 'green'],
+        backgroundColor: colors,
         borderWidth: 5,
         borderColor: '#161212',
 
