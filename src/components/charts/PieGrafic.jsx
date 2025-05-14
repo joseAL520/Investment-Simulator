@@ -1,11 +1,13 @@
-import React from 'react';
+
 import { Doughnut } from 'react-chartjs-2';
-import { data, options } from './logic/optionesPie';
+import { data, getDataInvCripto, options } from './logic/optionesPie';
 import { Info } from './info/infoCript';
+import { CriptoPorfInvtGet } from '../../services/CriptoPorft';
 
 
 export const PieChart = () => {
-
+  const {cripto} = CriptoPorfInvtGet()
+  getDataInvCripto(cripto);
   return (<>
     <h1 className='p-2'>Distribución del Portafolio</h1>
 
@@ -15,7 +17,7 @@ export const PieChart = () => {
         </div>
 
         <div>
-            <Info></Info>
+            <Info dataCripto={cripto} key={cripto.id}></Info>
         </div>
 
     </section>
