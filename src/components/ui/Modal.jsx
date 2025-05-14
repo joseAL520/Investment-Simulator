@@ -1,7 +1,5 @@
 export const Modal = ({data}) => {
- 
-  console.log(data)
-  
+   
 return (<>
 
   <dialog id="my_modal_2" className="modal">
