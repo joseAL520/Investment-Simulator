@@ -1,5 +1,7 @@
 export const Modal = ({data}) => {
  
+  console.log(data)
+  
 return (<>
 
   <button className="btn" onClick={()=>document.getElementById('my_modal_2').showModal()}>Mas</button>
@@ -23,19 +25,19 @@ return (<>
 
         <div className="col-start-2 row-start-1 font-bold"> 
           <div className="flex gap-0.5">
-            <img src={data.img} alt="ll" width={20} height={20} /> {data.nombreActivo}
+            <img src={data.img} alt="ll" width={20} height={20} /> {data.nombreactivo}
           </div>
         </div>
-        <div className="col-start-2 row-start-2 font-bold">{data.tipoOperacion}</div>
+        <div className="col-start-2 row-start-2 font-bold">{data.tipooperacion}</div>
         <div className="col-start-2 row-start-3 font-bold">{data.cantidad}</div>
-        <div className="col-start-2 row-start-4 font-bold">$ {parseFloat(data.valorTotalConComisionCompra ||  data.valorTotalConComisionVenta).toLocaleString()}</div>
-        <div className="col-start-2 row-start-5 font-bold">{new Date(data.fecheCreacionCripto).toLocaleDateString('es-ES')}</div>
-        <div className="col-start-2 row-start-6 font-bold">$ {parseFloat(data.valorActualCripto).toLocaleString()}</div>
-        <div className="col-start-2 row-start-7 font-bold">{data.nombreActivo}</div>
+        <div className="col-start-2 row-start-4 font-bold">$ {parseFloat(data.valortotalconcomisioncompra || data.valortotalconcomisionventa).toLocaleString()}</div>
+        <div className="col-start-2 row-start-5 font-bold">{new Date(data.fechahoracompra || data.fechahoraventa).toLocaleDateString('es-ES')}</div>
+        <div className="col-start-2 row-start-6 font-bold">$ {parseFloat(data.valoractualcripto).toLocaleString()}</div>
+        <div className="col-start-2 row-start-7 font-bold">{data.nombreactivo}</div>
         <div className="col-start-2 row-start-8 font-bold">
           { data.roi < 0 ? <label className="text-error">{data.roi}%</label> : <label className="text-success">+{data.roi}%</label>}
         </div>
-        <div className="col-start-2 row-start-9 font-bold">{data.transaccionId}</div>
+        <div className="col-start-2 row-start-9 font-bold">{data.transaccionid}</div>
       </div>
       
       <div className="flex justify-end">

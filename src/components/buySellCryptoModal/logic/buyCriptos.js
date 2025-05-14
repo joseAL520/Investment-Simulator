@@ -12,17 +12,17 @@ export const buyCryptos = async (formData,typeAction,typeCripto,quantity,formDat
 
     const datosFinales = {
         ...formData,
-        transaccionId: `tx-${Date.now()}`,
+        transaccionid: `tx-${Date.now()}`,
         activo: typeCripto,
-        tipoOperacion: typeAction,
+        tipooperacion: typeAction,
         cantidad: Number(quantity),
-        valorActualCripto: formDataCurrency?.exchangeRate,
-        fechaHoraCompra: fechaActual,
-        valorTotalConComisionCompra:valorTotalConComision  ,
+        valoractualcripto: formDataCurrency?.exchangeRate,
+        fechahoracompra: fechaActual,
+        valortotalconcomisioncompra:valorTotalConComision  ,
         img:dataCripto.img,
-        nombreActivo:dataCripto.label
+        nombreactivo:dataCripto.label
     };
 
     CriptoPorftPost(datosFinales);
-    window.location.reload();
+    //window.location.reload();
 }

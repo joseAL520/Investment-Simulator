@@ -11,7 +11,7 @@ export const TableHistoryCrypto = ({ itemMenu }) => {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   // Ordenar los datos por fecha (de más reciente a más antiguo)
-  const sortedCriptos = criptos.sort((a, b) => new Date(b.fecheCreacionCripto) - new Date(a.fecheCreacionCripto));
+  const sortedCriptos = criptos.sort((a, b) => new Date(b.fechahoracompra || b.fechahoraventa) - new Date(a.fechahoracompra || a.fechahoraventa));
   // Paginación: tomar los elementos correspondientes a la página actual
   const paginatedCriptos = sortedCriptos.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
@@ -50,12 +50,12 @@ export const TableHistoryCrypto = ({ itemMenu }) => {
         ) : (
           <tbody>
             {paginatedCriptos.map((value) => (
-              <tr key={value.transaccionId}>
+              <tr key={value.transaccionid}>
                 <th>
                   <div>
-                    <div className="font-bold">{new Date(value.fecheCreacionCripto).toLocaleDateString('es-ES')}</div>
+                    <div className="font-bold">{new Date(value.fechahoracompra || value.fechahoraventa).toLocaleDateString('es-ES')}</div>
                     <div className="text-sm opacity-50">
-                      {new Date(value.fecheCreacionCripto).toLocaleTimeString('es-ES', {
+                      {new Date(value.fechahoracompra || value.fechahoraventa).toLocaleTimeString('es-ES', {
                         hour: '2-digit',
                         minute: '2-digit',
                         hour12: true,
@@ -71,21 +71,21 @@ export const TableHistoryCrypto = ({ itemMenu }) => {
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold">{value.nombreActivo}</div>
+                      <div className="font-bold">{value.nombreactivo}</div>
                       <div className="text-sm opacity-50">{value.activo}</div>
                     </div>
                   </div>
                 </td>
-                <td className={value.tipoOperacion === 'comprar' ? 'text-error' : 'text-success'}>
-                  {value.tipoOperacion === 'comprar' ? 'Compra' : 'Venta'}
+                <td className={value.tipooperacion === 'comprar' ? 'text-error' : 'text-success'}>
+                  {value.tipooperacion === 'comprar' ? 'Compra' : 'Venta'}
                 </td>
                 <td>{value.cantidad}</td>
-                <td>${parseFloat(value.valorTotalConComisionCompra || value.valorTotalConComisionVenta).toLocaleString()}</td>
+                <td>${parseFloat(value.valortotalconcomisioncompra || value.valortotalconcomisionventa).toLocaleString()}</td>
                 <td className={value.roi < 0 ? 'text-error' : 'text-success'}>
                   {value.roi !== undefined ? `${Math.floor(value.roi)}%` : ''}
                 </td>
                 <td className="text-sm opacity-50">
-                  <Modal data={value} />
+                  <Modal data={value.transaccionid} />
                 </td>
               </tr>
             ))}

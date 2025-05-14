@@ -5,9 +5,9 @@ export const  calcularRoiGlobal = (transacciones) => {
   let totalRecuperado = 0;
 
   transacciones.forEach(tx => {
-    const tipo = tx.tipoOperacion?.toLowerCase();
-    const compra = parseFloat(tx.valorTotalConComisionCompra || '0');
-    const venta = parseFloat(tx.valorTotalConComisionVenta || '0');
+    const tipo = tx.tipooperacion?.toLowerCase();
+    const compra = parseFloat(tx.valortotalconcomisioncompra || '0');
+    const venta = parseFloat(tx.valortotalconcomisionventa || '0');
 
     if (tipo === 'comprar') {
       totalInvertido += compra;

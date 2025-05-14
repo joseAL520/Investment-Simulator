@@ -12,18 +12,18 @@ export const saleCriptos = (formData,action,active,quantity,formDataCurrency) =>
 
     const datosFinales = {
         ...formData,
-        transaccionId: `tx-${Date.now()}`,
+        transaccionid: `tx-${Date.now()}`,
         activo: active,
-        tipoOperacion: action,
+        tipooperacion: action,
         cantidad: quantity,
-        valorActualCripto: formDataCurrency?.exchangeRate,
-        fechaHoraVenta: fechaActual,
-        valorTotalConComisionVenta:valorTotalConComision  ,
+        valoractualcripto: formDataCurrency?.exchangeRate,
+        fechahoraventa: fechaActual,
+        valortotalconcomisionventa:valorTotalConComision  ,
         roi: calculationRoi(valorTotal,valorTotal),
         img:criptoSearch.img,
-        nombreActivo:criptoSearch.label,
+        nombreactivo:criptoSearch.label,
     };
     CriptoPorftPost(datosFinales)
-    window.location.reload();
+    //window.location.reload();
   
 }

@@ -14,20 +14,20 @@ export const BuySellCryptos = ({typeCrip,apiDataCurrency}) => {
   const [typeCripto, setTypeCripto] = useState(''); // tipo de cripto
   const [quantity,setQuantity] = useState(0);
   const [formData] = useState({
-    transaccionId: '',
+    transaccionid: '',
     img:'',
-    nombreActivo:'',
+    nombreactivo:'',
     //comprar
     activo: '',
-    tipoOperacion: '',
+    tipooperacion: '',
     cantidad: '',
-    valorActualCripto: '',
-    fechaHoraCompra: '',
-    valorTotalConComisionCompra:'',
+    valoractualcripto: '',
+    fechahoracompra: '',
+    valortotalconcomisioncompra:null,
     //venta
     roi: '',
-    fechaHoraVenta:'',
-    valorTotalConComisionVenta:'',
+    fechahoraventa:'',
+    valortotalconcomisionventa:null,
 
   });
  
