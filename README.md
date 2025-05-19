@@ -1,12 +1,26 @@
-# React + Vite
+# 📊 Inventario Cripto Simulator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto gestiona un inventario de criptomonedas con información actualizada sobre:
 
-Currently, two official plugins are available:
+- Cantidad disponible
+- Valor invertido
+- Ganancias y pérdidas
+- Última fecha de actualización
+- Historial y generador pdf
+- Grafica del mercado
+- ROI
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Los datos son generados y validados con precios reales de mercado utilizando la API de **[Alpha Vantage](https://www.alphavantage.co/)**.
+NOTA: Limite de  25 peticiones diarias API
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🚀 Criptomonedas Incluidas
+- Bitcoin (BTC)
+- Ethereum (ETH)
+- Binance Coin (BNB)
+- XRP (XRP)
+- Polygon (MATIC)
+- Dogecoin (DOGE)
+- Solana (SOL)
+---
