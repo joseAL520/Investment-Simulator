@@ -6,11 +6,16 @@ export const Sidebar = () => {
   return (
     <div className='w-60 h-screen  bg-base-200  flex flex-col  gap-10'>
 
-       <div className="text-center p-4 ">
-        <strong className='text-2xl'>SmartInvest</strong>
-        <br />
-        <span className='text-xs text-gray-500'>@SmartInvest</span>   
-       </div>
+    <div className="text-center p-4 flex flex-col items-center justify-center bg-gray-500">
+              <img
+                className="w-10 h-10 rounded-3xl mix-blend-multiply"
+                src="src/assets/logo-Photoroom-removebg-preview.png"
+                alt="logo"
+              />
+              <strong className="text-2xl text-white mt-2">SmartInvest</strong>
+              <span className="text-xs text-blue-100">@SmartInvest</span>
+    </div>
+
 
        <div className="">
         <ul className="menu  rounded-box w-56">             
