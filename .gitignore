@@ -23,6 +23,3 @@ dist-ssr
 *.sln
 *.sw?
 *.environment
-
-# Env dev
-src/environment/dev_env.js
