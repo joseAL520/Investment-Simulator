@@ -24,3 +24,13 @@ NOTA: Limite de  25 peticiones diarias API
 - Dogecoin (DOGE)
 - Solana (SOL)
 ---
+
+PASOS PARA EJECUTAR EL PROYECTO
+1. clona el proyecto
+// instalar las librerias(si en caso dado pide)
+1.2 npm install @react-pdf/renderer
+1.2 npm install chart.js react-chartjs-2
+....
+2. npm install
+3. npm run dev
+....
