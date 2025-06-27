@@ -1,8 +1,7 @@
 
 export const options = {
     
-    responsive: true,
-
+    responsive: true, 
     plugins: {
       legend: {display: false,} 
     },

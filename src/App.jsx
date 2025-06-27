@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
-import { Sidebar } from './components/ui/Sidebar'
 import { Dashboard } from './pages/Dashboard'
 import { Historial } from './pages/Historial'
 import { Portafolio } from './pages/Portafolio'
+import Sidebar from './components/ui/Sidebar';
 
 function App() {
 

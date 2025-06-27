@@ -95,7 +95,7 @@ const MyDocument = ({data}) => (
     <Page size="A4" style={styles.page}>
       {/* Header con logo y nombre */}
       <View style={styles.header}>
-        <Image style={styles.logo} src="src/assets/logo-Photoroom-removebg-preview.png"/>
+        <Image style={styles.logo} src="imgs/logo.png"/>
         <Text style={styles.title}>SmartInvest</Text>
       </View>
 
